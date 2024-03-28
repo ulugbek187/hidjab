@@ -105,7 +105,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
                               label: const Text(
-                                "BOOK NAME",
+                                "Hidjab NAME",
                               ),
                               labelStyle: AppTextStyle.interBold.copyWith(
                                 fontSize: 10.sp,
@@ -152,7 +152,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
                             },
                             decoration: InputDecoration(
                               label: const Text(
-                                "BOOK DESCRIPTION",
+                                "Hidjab DESCRIPTION",
                               ),
                               labelStyle: AppTextStyle.interBold.copyWith(
                                 fontSize: 10.sp,
@@ -199,7 +199,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
                             },
                             decoration: InputDecoration(
                               label: const Text(
-                                "BOOK'S RATE",
+                                "Hidjab RATE",
                               ),
                               labelStyle: AppTextStyle.interBold.copyWith(
                                 fontSize: 10.sp,
@@ -246,7 +246,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
                             },
                             decoration: InputDecoration(
                               label: const Text(
-                                "BOOK'S PRICE",
+                                "Hidjab PRICE",
                               ),
                               labelStyle: AppTextStyle.interBold.copyWith(
                                 fontSize: 10.sp,

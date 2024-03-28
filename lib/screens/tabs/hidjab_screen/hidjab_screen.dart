@@ -186,7 +186,7 @@ class _HidjabScreenState extends State<HidjabScreen> {
                                           imageUrl: list[index].imageUrl,
                                           height: 240.h,
                                           width: double.infinity,
-                                          fit: BoxFit.contain,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                       SizedBox(
