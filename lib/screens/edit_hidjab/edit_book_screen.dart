@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hidjab/view_models/image_view_model.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import '../../data/models/category_model.dart';
@@ -16,26 +18,40 @@ class EditBookScreen extends StatefulWidget {
   const EditBookScreen({
     super.key,
     required this.bookModel,
+    required this.docId,
   });
 
   final HidjabModel bookModel;
+  final String docId;
 
   @override
   State<EditBookScreen> createState() => _EditBookScreenState();
 }
 
+String imageUrl = '';
+
 int activeIndex = -1;
+String bookName = '';
+String bookDescription = '';
+String bookPrice = '';
+String rate = '';
+
+// bool
 
 class _EditBookScreenState extends State<EditBookScreen> {
+  String categoryDocId = '';
+@override
+  void initState() {
+    _init();
+    super.initState();
+  }
+
+  _init(){
+  categoryDocId = widget.bookModel.docId;
+  }
+
   @override
   Widget build(BuildContext context) {
-    String bookName = '';
-    String bookDescription = '';
-    String bookPrice = '';
-    String imageUrl = '';
-    String rate = '';
-    String categoryDocId = '';
-
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarColor: AppColors.transparent,
@@ -45,7 +61,6 @@ class _EditBookScreenState extends State<EditBookScreen> {
       child: Scaffold(
         backgroundColor: Colors.green,
         appBar: AppBar(
-
           leading: ZoomTapAnimation(
             onTap: () {
               Navigator.pop(context);
@@ -60,7 +75,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
           elevation: 0,
           backgroundColor: Colors.greenAccent,
           title: Text(
-            "EDIT BOOK",
+            "EDIT Hidjab",
             style: AppTextStyle.interBold.copyWith(
               fontSize: 20.sp,
               fontWeight: FontWeight.w900,
@@ -126,7 +141,6 @@ class _EditBookScreenState extends State<EditBookScreen> {
                               ),
                             ),
                           ),
-
                           SizedBox(
                             height: 24.h,
                           ),
@@ -139,53 +153,6 @@ class _EditBookScreenState extends State<EditBookScreen> {
                             decoration: InputDecoration(
                               label: const Text(
                                 "BOOK DESCRIPTION",
-                              ),
-                              labelStyle: AppTextStyle.interBold.copyWith(
-                                fontSize: 10.sp,
-                              ),
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(
-                                  16.r,
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.black54,
-                                  width: 2.w,
-                                ),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(
-                                  16.r,
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 2.w,
-                                ),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(
-                                  16.r,
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 2.w,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 24.h,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.url,
-                            textInputAction: TextInputAction.next,
-                            onChanged: (v) {
-                              imageUrl = v;
-                            },
-                            decoration: InputDecoration(
-                              label: const Text(
-                                "IMAGE URL",
                               ),
                               labelStyle: AppTextStyle.interBold.copyWith(
                                 fontSize: 10.sp,
@@ -370,7 +337,9 @@ class _EditBookScreenState extends State<EditBookScreen> {
                                         activeIndex = index;
                                       });
                                     },
-                                    isActive: activeIndex == index,
+                                    isActive: activeIndex == index ||
+                                        list[index].docId ==
+                                            categoryDocId,
                                   ),
                                 )
                               ],
@@ -382,6 +351,53 @@ class _EditBookScreenState extends State<EditBookScreen> {
                         },
                       ),
                     ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Center(
+                      child: Image.network(
+                        imageUrl == '' ? widget.bookModel.imageUrl : imageUrl,
+                        height: 485.h,
+                        width: 400.w,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 50.w),
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsets.all(24),
+                            backgroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                          onPressed: () {
+                            takeAnImage();
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "New image",
+                                style: AppTextStyle.interSemiBold.copyWith(
+                                  fontSize: 24,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Icon(
+                                Icons.image,
+                                color: Colors.white,
+                                size: 20.h,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -391,9 +407,8 @@ class _EditBookScreenState extends State<EditBookScreen> {
               onTap: () async {
                 HidjabModel category = HidjabModel(
                   imageUrl:
-                      imageUrl == "" ? widget.bookModel.imageUrl : imageUrl,
+                      imageUrl == '' ? widget.bookModel.imageUrl : imageUrl,
                   rate: rate == "" ? widget.bookModel.rate : rate,
-
                   bookName:
                       bookName == "" ? widget.bookModel.bookName : bookName,
                   docId: widget.bookModel.docId,
@@ -448,5 +463,90 @@ class _EditBookScreenState extends State<EditBookScreen> {
         ),
       ),
     );
+  }
+
+  final ImagePicker picker = ImagePicker();
+  String imageUrl = "";
+  String storagePath = "";
+
+  Future<void> _getImageFromCamera() async {
+    XFile? image = await picker.pickImage(
+      source: ImageSource.camera,
+      maxHeight: 1024,
+      maxWidth: 1024,
+    );
+    if (image != null && context.mounted) {
+      debugPrint("IMAGE PATH:${image.path}");
+      storagePath = "files/images/${image.name}";
+      if (mounted) {
+        imageUrl = (await context.read<ImageViewModel>().uploadImage(
+              pickedFile: image,
+              storagePath: storagePath,
+            ))!;
+      }
+
+      debugPrint("DOWNLOAD URL:$imageUrl");
+    }
+  }
+
+  Future<void> _getImageFromGallery() async {
+    XFile? image = await picker.pickImage(
+      source: ImageSource.gallery,
+      maxHeight: 1024,
+      maxWidth: 1024,
+    );
+    if (image != null && context.mounted) {
+      debugPrint("IMAGE PATH:${image.path}");
+      storagePath = "files/images/${image.name}";
+      if (mounted) {
+        imageUrl = (await context.read<ImageViewModel>().uploadImage(
+              pickedFile: image,
+              storagePath: storagePath,
+            ))!;
+      }
+      debugPrint("DOWNLOAD URL:$imageUrl");
+    }
+  }
+
+  takeAnImage() {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        )),
+        context: context,
+        builder: (context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: 12.h),
+              ListTile(
+                onTap: () async {
+                  await _getImageFromGallery();
+
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                  }
+                  setState(() {});
+                },
+                leading: const Icon(Icons.photo_album_outlined),
+                title: const Text("Gallereyadan olish"),
+              ),
+              ListTile(
+                onTap: () async {
+                  await _getImageFromCamera();
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                  }
+                  setState(() {});
+                },
+                leading: const Icon(Icons.camera_alt),
+                title: const Text("Kameradan olish"),
+              ),
+              SizedBox(height: 24.h),
+            ],
+          );
+        });
   }
 }

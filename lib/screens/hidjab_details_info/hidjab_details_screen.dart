@@ -42,7 +42,7 @@ class HidjabInfoScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => EditBookScreen(
-                          bookModel: bookModel,
+                          bookModel: bookModel, docId: bookModel.docId,
                         ),
                       ),
                     );

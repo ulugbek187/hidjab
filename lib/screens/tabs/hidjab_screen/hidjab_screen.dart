@@ -139,7 +139,8 @@ class _HidjabScreenState extends State<HidjabScreen> {
                         );
                       }
                       if (snapshot.hasData) {
-                        List<HidjabModel> list = snapshot.data as List<HidjabModel>;
+                        List<HidjabModel> list =
+                            snapshot.data as List<HidjabModel>;
                         return Expanded(
                           child: GridView.count(
                             primary: false,
@@ -213,6 +214,7 @@ class _HidjabScreenState extends State<HidjabScreen> {
                                                   builder: (context) =>
                                                       EditBookScreen(
                                                     bookModel: list[index],
+                                                    docId: list[index].docId,
                                                   ),
                                                 ),
                                               );
@@ -334,7 +336,8 @@ class _HidjabScreenState extends State<HidjabScreen> {
                         );
                       }
                       if (snapshot.hasData) {
-                        List<HidjabModel> list = snapshot.data as List<HidjabModel>;
+                        List<HidjabModel> list =
+                            snapshot.data as List<HidjabModel>;
                         return Expanded(
                           child: GridView.count(
                             primary: false,
@@ -408,6 +411,7 @@ class _HidjabScreenState extends State<HidjabScreen> {
                                                   builder: (context) =>
                                                       EditBookScreen(
                                                     bookModel: list[index],
+                                                    docId: list[index].docId,
                                                   ),
                                                 ),
                                               );

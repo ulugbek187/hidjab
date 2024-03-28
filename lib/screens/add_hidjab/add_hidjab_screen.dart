@@ -32,6 +32,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
   // final TextEditingController imageUrlController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController rateController = TextEditingController();
+  bool imageState = false;
 
   @override
   void dispose() {
@@ -423,13 +424,41 @@ class _AddBookScreenState extends State<AddBookScreen> {
                       SizedBox(
                         height: 20.h,
                       ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      imageState == false
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text("no photo"),
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                Icon(
+                                  Icons.error,
+                                  color: Colors.red,
+                                  size: 50.h,
+                                ),
+                              ],
+                            )
+                          : Center(
+                              child: Image.network(
+                                imageUrl,
+                                height: 485.h,
+                                width: 400.w,
+                              ),
+                            ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
                       Center(
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 50.w),
                           child: TextButton(
                             style: TextButton.styleFrom(
                               padding: const EdgeInsets.all(24),
-                              backgroundColor: Colors.black,
+                              backgroundColor: Colors.blue,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                               ),
@@ -457,21 +486,6 @@ class _AddBookScreenState extends State<AddBookScreen> {
                           ),
                         ),
                       ),
-                      imageUrl == ''
-                          ? Center(
-                              child: Icon(
-                                Icons.error,
-                                color: Colors.red,
-                                size: 50.h,
-                              ),
-                            )
-                          : Center(
-                              child: Image.network(
-                                imageUrl,
-                                height: 200.h,
-                                width: 200.w,
-                              ),
-                            ),
                     ],
                   ),
                 ),
@@ -585,6 +599,8 @@ class _AddBookScreenState extends State<AddBookScreen> {
       }
 
       debugPrint("DOWNLOAD URL:$imageUrl");
+      imageState = true;
+      setState(() {});
     }
   }
 
@@ -604,6 +620,8 @@ class _AddBookScreenState extends State<AddBookScreen> {
             ))!;
       }
       debugPrint("DOWNLOAD URL:$imageUrl");
+      imageState = true;
+      setState(() {});
     }
   }
 
@@ -626,6 +644,8 @@ class _AddBookScreenState extends State<AddBookScreen> {
 
                   if (context.mounted) {
                     Navigator.pop(context);
+                    imageState = true;
+                    setState(() {});
                   }
                 },
                 leading: const Icon(Icons.photo_album_outlined),
@@ -636,6 +656,8 @@ class _AddBookScreenState extends State<AddBookScreen> {
                   await _getImageFromCamera();
                   if (context.mounted) {
                     Navigator.pop(context);
+                    imageState = true;
+                    setState(() {});
                   }
                 },
                 leading: const Icon(Icons.camera_alt),
