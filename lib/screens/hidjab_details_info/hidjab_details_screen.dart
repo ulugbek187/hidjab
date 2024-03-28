@@ -162,8 +162,8 @@ class HidjabInfoScreen extends StatelessWidget {
                                 child: CachedNetworkImage(
                                   imageUrl: bookModel.imageUrl,
                                   height: 300.h,
-                                  width: 200.w,
-                                  fit: BoxFit.cover,
+                                  width: 350.w,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ),

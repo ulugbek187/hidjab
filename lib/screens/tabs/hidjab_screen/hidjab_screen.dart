@@ -184,13 +184,13 @@ class _HidjabScreenState extends State<HidjabScreen> {
                                         },
                                         child: CachedNetworkImage(
                                           imageUrl: list[index].imageUrl,
-                                          height: 200.h,
+                                          height: 240.h,
                                           width: double.infinity,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.contain,
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 10.h,
+                                        height: 5.h,
                                       ),
                                       Expanded(
                                         child: Text(
@@ -199,9 +199,7 @@ class _HidjabScreenState extends State<HidjabScreen> {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
+
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
