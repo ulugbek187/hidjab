@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>786119628442-dnhflri72pcqfb30dj9ictt66hhm3ijn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.786119628442-dnhflri72pcqfb30dj9ictt66hhm3ijn</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>786119628442-qjjtk6j92h1j0dfvifo7r32f9jjit6cn.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBHS6WPstyP11ueEsrNavuCXSjkt40PjYY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>786119628442</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>uz.aphidjab.hidjab</string>
+	<key>PROJECT_ID</key>
+	<string>app-hidjab</string>
+	<key>STORAGE_BUCKET</key>
+	<string>app-hidjab.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:786119628442:ios:6d4ea851c4e4414f84b123</string>
+</dict>
+</plist>
