@@ -7,6 +7,7 @@ import 'package:hidjab/services/local_notification_service.dart';
 import 'package:hidjab/view_models/auth_view_model.dart';
 import 'package:hidjab/view_models/books_view_model.dart';
 import 'package:hidjab/view_models/category_view_model.dart';
+import 'package:hidjab/view_models/image_view_model.dart';
 import 'package:hidjab/view_models/notifications_view_model.dart';
 import 'package:hidjab/view_models/tab_view_model.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +43,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => NotificationsViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ImageViewModel(),
         ),
       ],
       child: const MyApp(),

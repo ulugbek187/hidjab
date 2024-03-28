@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Lottie.asset(
-          AppImages.login,
+          AppImages.lottie,
         ),
       ),
     );

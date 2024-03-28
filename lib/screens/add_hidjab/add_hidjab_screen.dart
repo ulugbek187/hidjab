@@ -28,14 +28,15 @@ class _AddBookScreenState extends State<AddBookScreen> {
   final TextEditingController bookNameController = TextEditingController();
   final TextEditingController bookDescriptionController =
       TextEditingController();
-  final TextEditingController imageUrlController = TextEditingController();
+
+  // final TextEditingController imageUrlController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController rateController = TextEditingController();
 
   @override
   void dispose() {
     bookNameController.dispose();
-    imageUrlController.dispose();
+    // imageUrlController.dispose();
     super.dispose();
   }
 
@@ -226,48 +227,48 @@ class _AddBookScreenState extends State<AddBookScreen> {
                             SizedBox(
                               height: 24.h,
                             ),
-                            TextFormField(
-                              keyboardType: TextInputType.url,
-                              textInputAction: TextInputAction.next,
-                              controller: imageUrlController,
-                              decoration: InputDecoration(
-                                label: const Text(
-                                  "IMAGE URL",
-                                ),
-                                labelStyle: AppTextStyle.interBold.copyWith(
-                                  fontSize: 10.sp,
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    16.r,
-                                  ),
-                                  borderSide: BorderSide(
-                                    color: Colors.black54,
-                                    width: 2.w,
-                                  ),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    16.r,
-                                  ),
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 2.w,
-                                  ),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    16.r,
-                                  ),
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 2.w,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // TextFormField(
+                            //   keyboardType: TextInputType.url,
+                            //   textInputAction: TextInputAction.next,
+                            //   controller: imageUrlController,
+                            //   decoration: InputDecoration(
+                            //     label: const Text(
+                            //       "IMAGE URL",
+                            //     ),
+                            //     labelStyle: AppTextStyle.interBold.copyWith(
+                            //       fontSize: 10.sp,
+                            //     ),
+                            //     filled: true,
+                            //     fillColor: Colors.white,
+                            //     border: OutlineInputBorder(
+                            //       borderRadius: BorderRadius.circular(
+                            //         16.r,
+                            //       ),
+                            //       borderSide: BorderSide(
+                            //         color: Colors.black54,
+                            //         width: 2.w,
+                            //       ),
+                            //     ),
+                            //     errorBorder: OutlineInputBorder(
+                            //       borderRadius: BorderRadius.circular(
+                            //         16.r,
+                            //       ),
+                            //       borderSide: BorderSide(
+                            //         color: Colors.red,
+                            //         width: 2.w,
+                            //       ),
+                            //     ),
+                            //     focusedErrorBorder: OutlineInputBorder(
+                            //       borderRadius: BorderRadius.circular(
+                            //         16.r,
+                            //       ),
+                            //       borderSide: BorderSide(
+                            //         color: Colors.red,
+                            //         width: 2.w,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             SizedBox(
                               height: 24.h,
                             ),
@@ -457,12 +458,20 @@ class _AddBookScreenState extends State<AddBookScreen> {
                         ),
                       ),
                       imageUrl == ''
-                          ? Icon(
-                              Icons.error,
-                              color: Colors.red,
-                              size: 50.h,
+                          ? Center(
+                              child: Icon(
+                                Icons.error,
+                                color: Colors.red,
+                                size: 50.h,
+                              ),
                             )
-                          : Image.network(imageUrl),
+                          : Center(
+                              child: Image.network(
+                                imageUrl,
+                                height: 200.h,
+                                width: 200.w,
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -471,14 +480,14 @@ class _AddBookScreenState extends State<AddBookScreen> {
               ZoomTapAnimation(
                 onTap: () async {
                   if (priceController.text != "" &&
-                      imageUrlController.text != "" &&
+                      imageUrl != "" &&
                       bookDescriptionController.text != '' &&
                       bookNameController.text != '' &&
                       categoryDocId != '' &&
                       rateController.text != '') {
                     HidjabModel category = HidjabModel(
                       price: double.parse(priceController.text),
-                      imageUrl: imageUrlController.text,
+                      imageUrl: imageUrl,
                       rate: rateController.text,
                       bookName: bookNameController.text,
                       docId: "",
@@ -490,7 +499,7 @@ class _AddBookScreenState extends State<AddBookScreen> {
                       fcmToken: fcmToken,
                       title: bookNameController.text,
                       body: bookDescriptionController.text,
-                      imageUrl: imageUrlController.text,
+                      imageUrl: imageUrl,
                       description: bookDescriptionController.text,
                       bookName: bookNameController.text,
                       bookPrice: priceController.text,
