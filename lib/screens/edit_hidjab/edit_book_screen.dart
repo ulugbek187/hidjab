@@ -40,14 +40,15 @@ String rate = '';
 
 class _EditBookScreenState extends State<EditBookScreen> {
   String categoryDocId = '';
-@override
+
+  @override
   void initState() {
     _init();
     super.initState();
   }
 
-  _init(){
-  categoryDocId = widget.bookModel.docId;
+  _init() {
+    categoryDocId = widget.bookModel.docId;
   }
 
   @override
@@ -105,7 +106,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
                               label: const Text(
-                                "Hidjab NAME",
+                                "Hidjab  NAME",
                               ),
                               labelStyle: AppTextStyle.interBold.copyWith(
                                 fontSize: 10.sp,
@@ -338,8 +339,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
                                       });
                                     },
                                     isActive: activeIndex == index ||
-                                        list[index].docId ==
-                                            categoryDocId,
+                                        list[index].docId == categoryDocId,
                                   ),
                                 )
                               ],
@@ -510,43 +510,44 @@ class _EditBookScreenState extends State<EditBookScreen> {
 
   takeAnImage() {
     showModalBottomSheet(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        )),
-        context: context,
-        builder: (context) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 12.h),
-              ListTile(
-                onTap: () async {
-                  await _getImageFromGallery();
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(16),
+        topRight: Radius.circular(16),
+      )),
+      context: context,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(height: 12.h),
+            ListTile(
+              onTap: () async {
+                await _getImageFromGallery();
 
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                  setState(() {});
-                },
-                leading: const Icon(Icons.photo_album_outlined),
-                title: const Text("Gallereyadan olish"),
-              ),
-              ListTile(
-                onTap: () async {
-                  await _getImageFromCamera();
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                  setState(() {});
-                },
-                leading: const Icon(Icons.camera_alt),
-                title: const Text("Kameradan olish"),
-              ),
-              SizedBox(height: 24.h),
-            ],
-          );
-        });
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
+                setState(() {});
+              },
+              leading: const Icon(Icons.photo_album_outlined),
+              title: const Text("Gallereyadan olish"),
+            ),
+            ListTile(
+              onTap: () async {
+                await _getImageFromCamera();
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
+                setState(() {});
+              },
+              leading: const Icon(Icons.camera_alt),
+              title: const Text("Kameradan olish"),
+            ),
+            SizedBox(height: 24.h),
+          ],
+        );
+      },
+    );
   }
 }

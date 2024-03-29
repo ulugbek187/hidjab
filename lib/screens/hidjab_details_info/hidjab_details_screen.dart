@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
 import '../../data/models/hidjab_model.dart';
 import '../../utils/colors/app_colors.dart';
 import '../../utils/images/app_images.dart';
@@ -23,7 +22,7 @@ class HidjabInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Center(
@@ -42,7 +41,8 @@ class HidjabInfoScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => EditBookScreen(
-                          bookModel: bookModel, docId: bookModel.docId,
+                          bookModel: bookModel,
+                          docId: bookModel.docId,
                         ),
                       ),
                     );
@@ -61,8 +61,7 @@ class HidjabInfoScreen extends StatelessWidget {
                         return AlertDialog(
                           backgroundColor: AppColors.white,
                           title: const Text("Ishonchingiz komilmi?"),
-                          titleTextStyle:
-                          AppTextStyle.interBold.copyWith(
+                          titleTextStyle: AppTextStyle.interBold.copyWith(
                             color: AppColors.black,
                             fontSize: 20.sp,
                           ),
@@ -71,14 +70,12 @@ class HidjabInfoScreen extends StatelessWidget {
                               onPressed: () async {
                                 context
                                     .read<BooksViewModel>()
-                                    .deleteProduct(
-                                    bookModel.docId, context);
+                                    .deleteProduct(bookModel.docId, context);
                                 Future.delayed(
                                   const Duration(seconds: 1),
                                 );
                                 Navigator.pop(context);
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(
+                                ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text(
                                       "SUCCESS",
@@ -134,7 +131,6 @@ class HidjabInfoScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 30.h),
-
                 SizedBox(
                   height: 20.h,
                 ),
@@ -191,7 +187,6 @@ class HidjabInfoScreen extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-
                       SizedBox(
                         height: 10.h,
                       ),
@@ -219,7 +214,7 @@ class HidjabInfoScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Hidjab reytingi:",
+                              "Hidjab regretting:",
                               style: AppTextStyle.interSemiBold.copyWith(
                                 color: AppColors.c0F0F10,
                                 fontSize: 16.sp,
