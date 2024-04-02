@@ -56,7 +56,7 @@ class MyTextField extends StatelessWidget {
             color: Colors.red,
           ),
         ),
-        focusedErrorBorder: OutlineInputBorder(
+        focusedErrorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),

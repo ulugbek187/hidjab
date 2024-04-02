@@ -61,7 +61,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               width: 10.w,
             ),
-            ZoomTapAnimation(child: Icon(Icons.perm_camera_mic), onTap: (){
+            ZoomTapAnimation(child: const Icon(Icons.perm_camera_mic), onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const PermissionsScreen()));
             },)
           ],
