@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hidjab/app_permisson/app_permision.dart';
 import 'package:hidjab/screens/routes.dart';
 import 'package:hidjab/services/local_notification_service.dart';
 import 'package:hidjab/view_models/auth_view_model.dart';
@@ -11,7 +12,6 @@ import 'package:hidjab/view_models/image_view_model.dart';
 import 'package:hidjab/view_models/notifications_view_model.dart';
 import 'package:hidjab/view_models/tab_view_model.dart';
 import 'package:provider/provider.dart';
-
 import 'firebase_options.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -26,6 +26,8 @@ Future<void> main() async {
   );
   FirebaseMessaging.instance.subscribeToTopic("news");
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  AppPermissions.getLocationPermission();
+
   runApp(
     MultiProvider(
       providers: [

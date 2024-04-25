@@ -166,7 +166,3 @@ List<PermissionList> permissionsList = [
       name: "SOME PERMISSIONS",
       permissionFunction: AppPermissions.getSomePermissions),
 ];
-
-///storage, camera, location, contacts, notification, sms, speech,
-///accessMediaLocation, accessNotificationPolicy, activityRecognition,
-///reminders, AppTrackingTransparency, assistant, audio, backgroundRefresh

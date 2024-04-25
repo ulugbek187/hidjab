@@ -44,12 +44,16 @@ class _EditBookScreenState extends State<EditBookScreen> {
   @override
   void initState() {
     _init();
+    // controller.text = widget.bookModel.bookName;
     super.initState();
   }
 
   _init() {
     categoryDocId = widget.bookModel.docId;
   }
+
+
+  // TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
